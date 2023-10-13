@@ -4,10 +4,10 @@ FROM node:18.15 AS build
 WORKDIR /app
 
 # package 복사
-COPY /myStudy/package*.json /myStudy/yarn.lock ./
+COPY /package*.json /yarn.lock ./
 RUN yarn install
 #파일전체복사
-COPY /myStudy .
+COPY / .
 RUN yarn build
 
 FROM node:18.15  AS runner
