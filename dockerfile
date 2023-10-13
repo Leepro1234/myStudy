@@ -4,7 +4,7 @@ FROM node:18.15 AS build
 WORKDIR /app
 
 # package 복사
-COPY /package*.json /yarn.lock ./
+COPY /package*.json ./
 RUN yarn install
 #파일전체복사
 COPY / .
