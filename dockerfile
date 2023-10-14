@@ -13,13 +13,12 @@ RUN yarn build
 FROM node:18.15  AS runner
 WORKDIR /app
 
-COPY --from=build /app/package*.json ./
-COPY --from=build /app/yarn.lock ./
-COPY --from=build /app/public ./public
-COPY --from=build  /app/.next/static ./.next/static
+COPY --from=build /app ./
 
+ADD test.sh ./
+RUN chmod +x ./test.sh
 # 운영환경 Install
-RUN yarn install --production 
+#RUN yarn install --production 
 
 EXPOSE 7878
-CMD ["yarn", "start"]
+CMD ["./test.sh"]
