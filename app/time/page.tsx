@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function Home() {
   const [currentTime, setCurrentTime] = useState('')
+  const [currentCount, setCurrentCount] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,6 +22,9 @@ export default function Home() {
     return () => clearInterval(interval)
   }, [])
 
+  const clicker = () => {
+    setCurrentCount(count => count + 1)
+  }
   return (
     <div>
       <h1 className="title">서버시간</h1>
@@ -30,11 +34,17 @@ export default function Home() {
           className="searchtxt"
           placeholder="http://naver.com"
         />
-        <button className="btn">조회하기</button>
+        <button className="btn" onClick={clicker}>
+          조회하기
+        </button>
       </div>
 
       <div className="timeview">
         <span>{currentTime}</span>
+      </div>
+
+      <div className="timeview">
+        <span>{currentCount}</span>
       </div>
     </div>
   )
